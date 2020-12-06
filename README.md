@@ -66,3 +66,32 @@ _ _ _
 2. All requirements listed on ansible-requirements.txt are installed to avoid any missing dependencies issues.
 
 3. Ansible and ansible-playbook are on the correct path.
+
+_ _ _
+Launching the AWS instance
+_ _ _
+
+1. Clone the repository localy
+
+2. Switch to the root directory of the cloned repository
+
+3. Make sure that the hosts file is an executable (555 access rights should do the trick).
+
+4. Make sure to uncomment and adjust variables in variables/target.yml to mirror your aws setup.
+
+5. Make sure to adjust aws credentials and region in scripts/envexports
+
+6. Source scripts/envexports
+	'''
+	. scripts/envexports
+	'''
+7. Run the playbook
+	'''
+	ansible-playbook playbooks/launch_ec2_instance.yml -e "@variables/target.yml" 
+	'''
+8. Wait for the playbook to exit.
+
+What we are doing here is simply launching an ec2 instance on aws and waiting untill we can ssh to it.
+
+If you encounter any errors while running the playbook do not move on to the next step.
+

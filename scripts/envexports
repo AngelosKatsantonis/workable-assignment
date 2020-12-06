@@ -1,0 +1,11 @@
+# This script when sourced will export necessary variables in the local environment
+# that is running the ansible playbooks
+# Do not change these, these are meant for proper pathing
+export EC2_INI_PATH=$(pwd)/ec2.ini
+export ANSIBLE_INVENTORY=$(pwd)/hosts
+export ANSIBLE_CONFIG=$(pwd)/ansible.cfg
+
+# Change these, these reflect your aws credentials and region
+export AWS_ACCESS_KEY_ID=aws-access-key-id
+export AWS_SECRET_ACCESS_KEY=aws-secret-access-key
+export AWS_REGION=aws-region
