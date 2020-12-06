@@ -1,0 +1,11 @@
+- hosts: tag_Name_{{ ec2_tag_Name }} 
+  gather_facts: yes
+  user: admin
+
+  tasks:
+    - include_role:
+        name: setup_docker    
+    - include_role:
+        name: manage_ec2_instance    
+      vars:
+        ec2_state: "restarted"

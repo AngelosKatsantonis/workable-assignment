@@ -95,3 +95,21 @@ What we are doing here is simply launching an ec2 instance on aws and waiting un
 
 If you encounter any errors while running the playbook do not move on to the next step.
 
+_ _ _
+Configuring the AWS instance
+_ _ _
+
+To perform configuration to the instance run the corresponding playbook:
+
+	```
+	ansible-playbook playbooks/configure_instance.yml -e "@variables/target.yml" --private-key <full-path-to-your-private-key>
+	```
+
+This playbook will install docker, docker-compose and dependencies, reboot the mahcine and then wait untill we can ssh again to it.
+
+Do note that unlike the previous playbook run here we specify a path to private key that will be used to ssh to the target machine.
+
+Do note also that this is the minimum required configuration for this particular
+assignment. In real situations we would probably have to configure other aspects of the machine as well such as dns, hostname, apt repositories, time, logging and/or install packages and agents running on the system for mail, monitoring etc.
+
+At the end of this step we have a basic ec2 instance with Debian Stretch that can run docker containers for us.

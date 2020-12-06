@@ -1,0 +1,25 @@
+- name: Setting ec2 host "{{ ec2_tag_Name }}" state to "{{ ec2_state }}" 
+  run_once: true
+  ec2:
+    state: "{{ ec2_state }}"
+    wait: true
+    instance_ids: "{{ hostvars[inventory_hostname].ec2_id}}"
+    region: "{{ ec2_region }}"
+  when: 
+    - ec2_state | lower in 'running,restarted,stopped,absent'
+  delegate_to: 127.0.0.1 
+
+- name: Waiting for ec2 host "{{ ec2_tag_Name }}" to boot by checking the ssh port
+  wait_for: 
+    host: "{{ hostvars[inventory_hostname].ec2_ip_address }}"
+    port: 22 
+    delay: 5 
+    timeout: 300 
+    state: started
+  when:
+    - ec2_state | lower == "running" or ec2_state | lower == "restarted"
+  delegate_to: 127.0.0.1 
+
+- name: Refresh hosts inventory list
+  meta: refresh_inventory
+  delegate_to: 127.0.0.1 
