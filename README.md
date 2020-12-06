@@ -82,13 +82,13 @@ _ _ _
 5. Make sure to adjust aws credentials and region in scripts/envexports
 
 6. Source scripts/envexports
-	'''
+	```	
 	. scripts/envexports
-	'''
+	```
 7. Run the playbook
-	'''
+	```
 	ansible-playbook playbooks/launch_ec2_instance.yml -e "@variables/target.yml" 
-	'''
+	```
 8. Wait for the playbook to exit.
 
 What we are doing here is simply launching an ec2 instance on aws and waiting untill we can ssh to it.
