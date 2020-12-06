@@ -1,7 +1,7 @@
 - name: Install pre-required packages
   become: true
   apt:
-    name: ['ca-certificates', 'gnupg-agent','software-properties-common', 'python-apt']
+    name: ['python-apt', 'ca-certificates', 'gnupg-agent','software-properties-common']
     state: latest
     update_cache: yes
 
