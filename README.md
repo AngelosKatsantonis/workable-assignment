@@ -113,3 +113,40 @@ Do note also that this is the minimum required configuration for this particular
 assignment. In real situations we would probably have to configure other aspects of the machine as well such as dns, hostname, apt repositories, time, logging and/or install packages and agents running on the system for mail, monitoring etc.
 
 At the end of this step we have a basic ec2 instance with Debian Stretch that can run docker containers for us.
+
+_ _ _
+Running the containers
+_ _ _
+
+1. Run the playbook
+	```
+	ansible-playbook playbooks/run_containers.yml -e "@variables/target.yml" --private-key <full-path-to-your-private-key>
+	```
+2. When prompted, input a name for the database, a user for the database and a password for the user. These will environmentals for the containers running postgres and the app and will be used by the app to connect to the postgresql backend.
+
+Once the playbook exits verify from your local machine that the app is up and running by making a request to the health endpoint
+	```
+	curl -I <public-ip>:5000/health	
+	```
+This should return a 200 HTTP Code
+
+You can verify the connectivity with the master Postgresql DB by making a request
+to the ready endpoint
+	```
+	curl -I <public-ip>:5000/ready
+	
+	```
+This should return a 200 HTTP Code
+
+If the app cannot connect to the backend it should return a 503 HTTP code
+We can easily verify that by sshing to the target machine and stopping the container of the master database.
+
+	```
+	docker stop src_master_1	
+	
+	```
+Now repeating the request to the ready endpoint should yield a 503 HTTP Code
+
+TO DO:
+* Configure replication between Master and Slave
+* Add sections to the README about the flask app and the postgresql master-slave setup

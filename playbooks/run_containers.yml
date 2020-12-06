@@ -1,0 +1,18 @@
+- hosts: tag_Name_{{ ec2_tag_Name }} 
+  gather_facts: yes
+  user: admin
+  vars_prompt:
+    - name: db_name
+      prompt: Specify a name for the databases?
+      private: no
+    
+    - name: db_user
+      prompt: Specify a db user for the databases?
+      private: no
+
+    - name: db_password
+      prompt: Specify a password for the user of the database?
+      private: yes  
+  tasks:
+    - include_role:
+        name: run_containers    

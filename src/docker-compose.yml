@@ -1,0 +1,29 @@
+version: '2'
+services:
+  master:
+    build: master/
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - master-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - "5432:5432"
+  slave:
+    build: slave/
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - slave-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - "5433:5432"
+  web:
+    build: web/
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - .:/web-app
+    ports:
+      - "5000:5000"
+volumes:
+  master-data:
+  slave-data:
