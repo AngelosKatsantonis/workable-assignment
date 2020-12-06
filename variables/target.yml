@@ -1,0 +1,31 @@
+#######################################
+# It is recommended not to change these
+#######################################
+# Name of the instance
+ec2_tag_Name: "test"
+# Type of the ec2 instance
+#ec2_instance_type: "t2.micro"
+# Image to use, this is community Debian Stretch Image
+#ec2_image: "ami-079b9207facfcaf0e"
+# Size of root volume
+#ec2_volume_size: 10
+# Number of instances we want to launch
+#ec2_count: 1
+# We allow the instance to have a public interface 
+# so we can ssh to it from outside the vpc and 
+# reach the app that will be running on it
+#assign_public_ip: "yes"
+
+####################################
+# Uncomment and adjust the following 
+####################################
+# Availability Zone
+#ec2_zone: "eu-west-1a"
+# Availability Region
+#ec2_region: "eu-west-1"
+# Subnet to assign to the instance
+#ec2_subnet_id: "subnet-02d53beda24646218"
+# Security group to assign to the instance
+#ec2_security_group: "assignment"
+# SSH key-pair to accept 
+#ec2_keypair: "assignment"
