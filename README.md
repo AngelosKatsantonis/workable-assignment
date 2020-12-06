@@ -3,14 +3,14 @@ Workable junior SRE assignment
 Tasks
  
 1. Create one of the following infrastructure pieces using automation tools: 
-..* Replicated MongoDB cluster
-..* Master-slave PostgreSQL setup
-..* ELK stack You can use the automation tool of your choice; terraform(preferred), 
+...a.Replicated MongoDB cluster
+...b.Master-slave PostgreSQL setup
+...c. ELK stack You can use the automation tool of your choice; terraform(preferred), 
 ansible(preferred), puppet, chef, etc 
 
 2. Create a sample web app that has: 
-..* A web server and replies to specific endpoints documented below.
-..* Optional : Communicates with an external postgres db
+...a.A web server and replies to specific endpoints documented below.
+...b.Optional : Communicates with an external postgres db
 
 This sample app should expose two endpoints: 
 1. Reply to a /health endpoint with HTTP code 200 when the pod is up and running
