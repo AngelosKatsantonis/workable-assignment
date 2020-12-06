@@ -100,9 +100,11 @@ Configuring the AWS instance
 _ _ _
 
 To perform configuration to the instance run the corresponding playbook:
+
 	```
 	ansible-playbook playbooks/configure_instance.yml -e "@variables/target.yml" --private-key <full-path-to-your-private-key>
 	```
+
 This playbook will install docker, docker-compose and dependencies, reboot the mahcine and then wait untill we can ssh again to it.
 
 Do note that unlike the previous playbook run here we specify a path to private key that will be used to ssh to the target machine.
