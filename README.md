@@ -129,21 +129,21 @@ _ _ _
 Once the playbook exits verify from your local machine that the app is up and running by making a request to the health endpoint.  
 	```
 	curl -I <public-ip>:5000/health	
-	```
+	```  
 This should return a 200 HTTP Code  
 
 You can verify the connectivity with the master Postgresql DB by making a request
 to the ready endpoint.  
 	```
 	curl -I <public-ip>:5000/ready
-	```
+	```  
 This should return a 200 HTTP Code  
 
 If the app cannot connect to the backend it should return a 503 HTTP code
 We can easily verify that by sshing to the target machine and stopping the container of the master database.  
 	```
 	docker stop src_master_1	
-	```
+	```  
 Now repeating the request to the ready endpoint should yield a 503 HTTP Code
 
 TO DO:
