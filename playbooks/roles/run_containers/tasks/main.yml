@@ -1,0 +1,18 @@
+- name: Rsync the src directory to the target
+  become: true
+  synchronize:
+    src: ../src
+    dest: /root/
+
+- name: Copy the database env template to the target
+  become: true
+  template:
+    src: templates/database.env
+    dest: /root/src/
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Move to the src directory and run docker-compose
+  become: true
+  shell: "cd /root/src/ && docker-compose up -d"
