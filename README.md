@@ -99,7 +99,7 @@ _ _ _
 Configuring the AWS instance
 _ _ _
 
-1. Run the corresponding playbook:
+1. Run the playbook
 	```
 	ansible-playbook playbooks/configure_instance.yml -e "@variables/target.yml" --private-key <full-path-to-your-private-key>
 	```
