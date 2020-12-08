@@ -147,5 +147,4 @@ We can easily verify that by sshing to the target machine and stopping the conta
 Now repeating the request to the ready endpoint should yield a 503 HTTP Code
 
 TO DO:
-* Configure replication between Master and Slave
 * Add sections to the README about the flask app and the postgresql master-slave setup
