@@ -4,10 +4,10 @@ import psycopg2
 
 app = Flask(__name__)
 
-dbname = os.environ['POSTGRES_DB']
-user = os.environ['POSTGRES_USER']
-password = os.environ['POSTGRES_PASSWORD']
-host = 'master'
+dbname = os.environ['PG_DB']
+user = os.environ['PG_USER']
+password = os.environ['PG_PW']
+host = os.environ['PG_HOST']
 
 @app.route('/health')
 def health_check():
@@ -20,7 +20,7 @@ def ready_check():
                                                 password=password)
         return 'OK'
     except Exception as e:
-        return str(e) + password + dbname, 503
+        return str(e), 503
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
