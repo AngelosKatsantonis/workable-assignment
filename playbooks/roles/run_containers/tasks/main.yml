@@ -8,7 +8,7 @@
   become: true
   template:
     src: templates/database.env
-    dest: /root/src/
+    dest: /root/src/.env
     owner: root
     group: root
     mode: 0400

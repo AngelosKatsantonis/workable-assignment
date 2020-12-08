@@ -1,25 +1,37 @@
 version: '2'
 services:
   master:
-    build: master/
-    env_file:
-      - database.env # configure postgres
+    build: 
+      context: ./master
+      dockerfile: Dockerfile
+    environment:
+        - PG_USER=${POSTGRES_USER}
+        - PG_PW=${POSTGRES_PASSWORD}
+        - PG_DB=${POSTGRES_DB}
+        - REPL_PW=${REPL_PASSWORD}
     volumes:
-      - master-data:/var/lib/postgresql/data/ # persist data even if container shuts down
-    ports:
-      - "5432:5432"
+      - master-data:/var/lib/postgresql/10/main/
   slave:
-    build: slave/
-    env_file:
-      - database.env # configure postgres
+    build: 
+      context: ./slave
+      dockerfile: Dockerfile
+    environment:
+      - REPL_PW=${REPL_PASSWORD}
+      - PG_USER=${POSTGRES_USER}
+      - PG_DB=${POSTGRES_DB}
+    depends_on:
+      - master
     volumes:
-      - slave-data:/var/lib/postgresql/data/ # persist data even if container shuts down
-    ports:
-      - "5433:5432"
+      - slave-data:/var/lib/postgresql/10/main/
   web:
     build: web/
-    env_file:
-      - database.env # configure postgres
+    depends_on:
+      - master
+    environment:
+      - PG_USER=${POSTGRES_USER}
+      - PG_PW=${POSTGRES_PASSWORD}
+      - PG_DB=${POSTGRES_DB}
+      - PG_HOST=master
     volumes:
       - .:/web-app
     ports:

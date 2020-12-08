@@ -13,6 +13,10 @@
     - name: db_password
       prompt: Specify a password for the user of the database?
       private: yes  
+    
+    - name: repl_password
+      prompt: Specify a password for the replication user of the database?
+      private: yes  
   tasks:
     - include_role:
-        name: run_containers    
+        name: run_containers
