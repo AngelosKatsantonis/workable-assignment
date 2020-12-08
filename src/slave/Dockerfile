@@ -6,4 +6,3 @@ COPY ./setup-slave.sh /setup-slave.sh
 RUN chmod 555 /setup-slave.sh
 USER postgres
 ENTRYPOINT ["/setup-slave.sh"]
-CMD ["/usr/lib/postgresql/10/bin/postgres", "-D", "/var/lib/postgresql/10/main", "-c", "config_file=/etc/postgresql/10/main/postgresql.conf"]
