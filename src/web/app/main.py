@@ -4,10 +4,12 @@ import psycopg2
 
 app = Flask(__name__)
 
+with open('dbhost', "r") as f:
+    host = f.read().replace('\n', '')
+
 dbname = os.environ['PG_DB']
 user = os.environ['PG_USER']
 password = os.environ['PG_PW']
-host = os.environ['PG_HOST']
 
 @app.route('/health')
 def health_check():
