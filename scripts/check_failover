@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ENDPOINT="127.0.0.1:5000/ready"
+
+status_code=$(curl --write-out %{http_code} --silent --output /dev/null $ENDPOINT)
+
+if [[ "$status_code" -ne 200 ]] ; then
+	docker exec -t src_slave_1 touch /tmp/failover.trigger
+	echo slave > /var/lib/docker/volumes/src_app-data/_data/dbhost
+	docker restart src_web_1
+else
+	exit 0
+fi

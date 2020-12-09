@@ -16,3 +16,16 @@
 - name: Move to the src directory and run docker-compose
   become: true
   shell: "cd /root/src/ && docker-compose up -d"
+
+- name: Copy failover cron check to target
+  become: true
+  copy:
+    src: ../scripts/check_failover
+    dest: /usr/local/bin/check_failover
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: Add failover check to crontab 
+  become: true
+  shell: echo "* * * * *        root    /usr/local/bin/check_failover" >> /etc/crontab

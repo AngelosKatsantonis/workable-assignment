@@ -31,11 +31,11 @@ services:
       - PG_USER=${POSTGRES_USER}
       - PG_PW=${POSTGRES_PASSWORD}
       - PG_DB=${POSTGRES_DB}
-      - PG_HOST=master
     volumes:
-      - .:/web-app
+      - app-data:/app/
     ports:
       - "5000:5000"
 volumes:
   master-data:
   slave-data:
+  app-data:
