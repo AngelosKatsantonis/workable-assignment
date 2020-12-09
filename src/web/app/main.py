@@ -1,16 +1,9 @@
-import os
 from flask import Flask
 import psycopg2
 
+from config import *
+
 app = Flask(__name__)
-
-with open('dbhost', "r") as f:
-    host = f.read().replace('\n', '')
-
-dbname = os.environ['PG_DB']
-user = os.environ['PG_USER']
-password = os.environ['PG_PW']
-
 @app.route('/health')
 def health_check():
     return 'OK'
@@ -25,4 +18,4 @@ def ready_check():
         return str(e), 503
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
