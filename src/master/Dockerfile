@@ -6,3 +6,4 @@ COPY ./setup-master.sh /setup-master.sh
 RUN chmod 555 /setup-master.sh
 USER postgres
 ENTRYPOINT ["/setup-master.sh"]
+CMD ["/usr/lib/postgresql/10/bin/postgres", "-D", "/var/lib/postgresql/10/main", "-c", "config_file=/etc/postgresql/10/main/postgresql.conf"]
